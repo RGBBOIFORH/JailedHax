@@ -110,7 +110,7 @@ function library:CreateTab(text, desc, mode)
 	
     if mode then
         theme = dark_theme
-    elseif mode == false then
+    elseif mode == flip then
         theme = _G.CustomTheme
     end
     local Tab = Instance.new("ImageButton")
