@@ -1,4 +1,4 @@
-if game:GetService("CoreGui"):FindFirstChild("PayPal") then game:GetService("CoreGui"):FindFirstChild("PayPal"):Destroy() end
+--if game:GetService("CoreGui"):FindFirstChild("PayPal") then game:GetService("CoreGui"):FindFirstChild("PayPal"):Destroy() end
 -- init
 local player = game:GetService("Players').LocalPlayer
 local mouse = player:GetMouse()
