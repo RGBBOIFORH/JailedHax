@@ -583,7 +583,7 @@ function library.new(name,options)
                 function TogTbl:SetToggle(Newname,bool)
                     Toggle = bool
                     ToggleName.Text = tostring(Newname)
-                    Coloryes = bool and Color3.fromRGB(46, 167, 37) or Color3.fromRGB(52, 52, 52)
+                    Coloryes = bool and Color3.fromRGB(0, 204, 255) or Color3.fromRGB(52, 52, 52)
                     if typeof(callback) == "string" then
                         uuu.flags[callback] = bool
                     elseif typeof(callback) == "function" then
@@ -594,7 +594,7 @@ function library.new(name,options)
 
                 ToggleBtn.MouseButton1Click:Connect(function()
                     Toggle = not Toggle
-                    local ToggleColor = Toggle and Color3.fromRGB(46, 167, 37) or Color3.fromRGB(52, 52, 52)
+                    local ToggleColor = Toggle and Color3.fromRGB(0, 204, 255) or Color3.fromRGB(52, 52, 52)
                     if typeof(callback) == "string" then
                         uuu.flags[callback] = Toggle
                     elseif typeof(callback) == "function" then
