@@ -1035,7 +1035,7 @@ function library.new(name,options)
                     local Button = CreateButton(tostring(newObject))
                     callback(Button.Text)
                     table.insert(tableA,tostring(newObject))
-                end)
+                end
 
                 function CheckDropdown:Remove(oldObject,tableB)
                     if DropdownFrame:FindFirstChild(tostring(oldObject)) then 
