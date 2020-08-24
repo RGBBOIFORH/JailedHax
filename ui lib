@@ -1080,3 +1080,4 @@ function library.new(name,options)
     end)
     return aaa
 end
+return library
