@@ -1031,12 +1031,12 @@ function library.new(name,options)
                     DropdownFrame.Visible = false
                 end)
 
-                function CheckDropdown:Add(newObject,tableA,callback)
+                function CheckDropdown:Add(newObject,callback)
                     local Button = CreateButton(tostring(newObject))
                     callback(Button.Text)
                 end
 
-                function CheckDropdown:Remove(oldObject,tableB)
+                function CheckDropdown:Remove(oldObject)
                     if DropdownFrame:FindFirstChild(tostring(oldObject)) then 
                         DropdownFrame:FindFirstChild(tostring(oldObject)):Destroy()
                         wait()
@@ -1080,4 +1080,3 @@ function library.new(name,options)
     end)
     return aaa
 end
-return library
