@@ -1045,7 +1045,7 @@ function library.new(name,options)
                 end
 
                 self:Resize()
-                return removeTBL
+                return CheckDropdown
             end
             return uuu
         end
