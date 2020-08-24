@@ -1034,12 +1034,10 @@ function library.new(name,options)
                 function CheckDropdown:Add(newObject,tableA,callback)
                     local Button = CreateButton(tostring(newObject))
                     callback(Button.Text)
-                    table.insert(tableA,tostring(newObject))
                 end
 
                 function CheckDropdown:Remove(oldObject,tableB)
                     if DropdownFrame:FindFirstChild(tostring(oldObject)) then 
-                        table.remove(tableB,tostring(newObject))
                         DropdownFrame:FindFirstChild(tostring(oldObject)):Destroy()
                         wait()
                         DropdownFrame.CanvasSize = UDim2.new(0,0,0,UIListLayoutLEA.AbsoluteContentSize.Y + 4)
