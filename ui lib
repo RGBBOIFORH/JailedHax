@@ -1033,7 +1033,7 @@ function library.new(name,options)
 
                 function CheckDropdown:Add(newObject,callback)
                     local Button = CreateButton(tostring(newObject))
-                    callback(Button.Text)
+                    callback()
                 end
 
                 function CheckDropdown:Remove(oldObject)
