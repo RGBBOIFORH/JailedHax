@@ -583,7 +583,7 @@ function library.new(name,options)
                 function TogTbl:SetToggle(Newname,bool)
                     Toggle = bool
                     ToggleName.Text = tostring(Newname)
-                    Coloryes = bool and Color3.fromRGB(0, 204, 255) or Color3.fromRGB(52, 52, 52)
+                    Coloryes = bool and Color3.fromRGB(46, 167, 37) or Color3.fromRGB(52, 52, 52)
                     if typeof(callback) == "string" then
                         uuu.flags[callback] = bool
                     elseif typeof(callback) == "function" then
@@ -594,7 +594,7 @@ function library.new(name,options)
 
                 ToggleBtn.MouseButton1Click:Connect(function()
                     Toggle = not Toggle
-                    local ToggleColor = Toggle and Color3.fromRGB(0, 204, 255) or Color3.fromRGB(52, 52, 52)
+                    local ToggleColor = Toggle and Color3.fromRGB(46, 167, 37) or Color3.fromRGB(52, 52, 52)
                     if typeof(callback) == "string" then
                         uuu.flags[callback] = Toggle
                     elseif typeof(callback) == "function" then
@@ -881,9 +881,7 @@ function library.new(name,options)
 
             function uuu:Dropdown(name,data,callback)
                 instances = instances + 1
-                local ObjectType = data.ObjectType
-                local TypeTable = data.TableNew
-                local removeTBL = {}
+                local CheckDropdown = {}
                 local DropdownHolder = Instance.new("Frame")
                 local UICornerEty = Instance.new("UICorner")
                 local DropdownName = Instance.new("TextLabel")
@@ -988,60 +986,41 @@ function library.new(name,options)
                 UIPaddingBzA.Parent = BackButton
                 UIPaddingBzA.PaddingLeft = UDim.new(0, 8)
 
-                if ObjectType == "Labels" then
-                      for i,v in next, TypeTable do
-                        local LabelHolder = Instance.new("TextLabel")
-                        LabelHolder.Name = tostring(v)
-                        LabelHolder.Parent = DropdownFrame
-                        LabelHolder.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-                        LabelHolder.BackgroundTransparency = 1.000
-                        LabelHolder.BorderSizePixel = 0
-                        LabelHolder.Size = UDim2.new(0, 252, 0, 28)
-                        LabelHolder.ZIndex = 4
-                        LabelHolder.Font = Enum.Font.SourceSans
-                        LabelHolder.Text = tostring(v)
-                        LabelHolder.TextColor3 = Color3.fromRGB(226, 226, 226)
-                        LabelHolder.TextSize = 16.000
+                function CreateButton(name)
+                    local DropButton = Instance.new("TextButton")
+                    local UICornerEaew = Instance.new("UICorner")
 
-                        DropdownFrame.CanvasSize = UDim2.new(0,0,0,UIListLayoutLEA.AbsoluteContentSize.Y + 4)
+                    DropButton.Name = name
+                    DropButton.Parent = DropdownFrame
+                    DropButton.BackgroundColor3 = Color3.fromRGB(32, 32, 32)
+                    DropButton.BorderSizePixel = 0
+                    DropButton.LayoutOrder = 1
+                    DropButton.Size = UDim2.new(0, 260, 0, 28)
+                    DropButton.ZIndex = 4
+                    DropButton.AutoButtonColor = false
+                    DropButton.Font = Enum.Font.SourceSans
+                    DropButton.Text = name
+                    DropButton.TextColor3 = Color3.fromRGB(226, 226, 226)
+                    DropButton.TextSize = 16.000
+
+                    UICornerEaew.CornerRadius = UDim.new(0, 4)
+                    UICornerEaew.Parent = DropButton
+
+                    local onClick = function()
+                        DropdownFrame.Visible = false
                     end
-                elseif ObjectType == "Buttons" then
-                    function CreateButton(name)
-                        local DropButton = Instance.new("TextButton")
-                        local UICornerEaew = Instance.new("UICorner")
+                    DropButton.MouseButton1Click:Connect(onClick)
+                    return DropButton
+                end
 
-                        DropButton.Name = name
-                        DropButton.Parent = DropdownFrame
-                        DropButton.BackgroundColor3 = Color3.fromRGB(32, 32, 32)
-                        DropButton.BorderSizePixel = 0
-                        DropButton.LayoutOrder = 1
-                        DropButton.Size = UDim2.new(0, 260, 0, 28)
-                        DropButton.ZIndex = 4
-                        DropButton.AutoButtonColor = false
-                        DropButton.Font = Enum.Font.SourceSans
-                        DropButton.Text = name
-                        DropButton.TextColor3 = Color3.fromRGB(226, 226, 226)
-                        DropButton.TextSize = 16.000
-
-                        UICornerEaew.CornerRadius = UDim.new(0, 4)
-                        UICornerEaew.Parent = DropButton
-
-                        local onClick = function()
-                            DropdownFrame.Visible = false
-                        end
-                        DropButton.MouseButton1Click:Connect(onClick)
-                        return DropButton
-                    end
-
-                    for i,v in next, TypeTable do
-                        local ButtonNew = CreateButton(tostring(v))
-                        ButtonNew.MouseButton1Click:Connect(function()
-                            DropdownHolder.Name = ButtonNew.Text
-                            DropdownName.Text = ButtonNew.Text
-                            callback(ButtonNew.Text)
-                        end)
-                        DropdownFrame.CanvasSize = UDim2.new(0,0,0,UIListLayoutLEA.AbsoluteContentSize.Y + 4)
-                    end
+                for i,v in next, data do
+                    local ButtonNew = CreateButton(tostring(v))
+                    ButtonNew.MouseButton1Click:Connect(function()
+                        DropdownHolder.Name = ButtonNew.Text
+                        DropdownName.Text = ButtonNew.Text
+                        callback(ButtonNew.Text)
+                    end)
+                    DropdownFrame.CanvasSize = UDim2.new(0,0,0,UIListLayoutLEA.AbsoluteContentSize.Y + 4)
                 end
 
                 OpenDropdown.MouseButton1Click:Connect(function()
@@ -1052,62 +1031,15 @@ function library.new(name,options)
                     DropdownFrame.Visible = false
                 end)
 
-                function removeTBL:Add(newObject,callback)
-                    if ObjectType == "Labels" then
-                        local LabelHolder = Instance.new("TextLabel")
-                        LabelHolder.Name = tostring(v)
-                        LabelHolder.Parent = DropdownFrame
-                        LabelHolder.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-                        LabelHolder.BackgroundTransparency = 1.000
-                        LabelHolder.BorderSizePixel = 0
-                        LabelHolder.Size = UDim2.new(0, 252, 0, 28)
-                        LabelHolder.ZIndex = 4
-                        LabelHolder.Font = Enum.Font.SourceSans
-                        LabelHolder.Text = tostring(v)
-                        LabelHolder.TextColor3 = Color3.fromRGB(226, 226, 226)
-                        LabelHolder.TextSize = 16.000
+                function CheckDropdown:Add(newObject,tableA,callback)
+                    local Button = CreateButton(tostring(newObject))
+                    callback(Button.Text)
+                    table.insert(tableA,tostring(newObject))
+                end)
 
-                        DropdownFrame.CanvasSize = UDim2.new(0,0,0,UIListLayoutLEA.AbsoluteContentSize.Y + 4)
-                    elseif ObjectType == "Buttons" then
-                        function CreateButton(name)
-                            local DropButton = Instance.new("TextButton")
-                            local UICornerEaew = Instance.new("UICorner")
-    
-                            DropButton.Name = name
-                            DropButton.Parent = DropdownFrame
-                            DropButton.BackgroundColor3 = Color3.fromRGB(32, 32, 32)
-                            DropButton.BorderSizePixel = 0
-                            DropButton.LayoutOrder = 1
-                            DropButton.Size = UDim2.new(0, 260, 0, 28)
-                            DropButton.ZIndex = 4
-                            DropButton.AutoButtonColor = false
-                            DropButton.Font = Enum.Font.SourceSans
-                            DropButton.Text = name
-                            DropButton.TextColor3 = Color3.fromRGB(226, 226, 226)
-                            DropButton.TextSize = 16.000
-    
-                            UICornerEaew.CornerRadius = UDim.new(0, 4)
-                            UICornerEaew.Parent = DropButton
-    
-                            local onClick = function()
-                                DropdownFrame.Visible = false
-                            end
-                            DropButton.MouseButton1Click:Connect(onClick)
-                            return DropButton
-                        end
-    
-                        local ButtonNew = CreateButton(tostring(newObject))
-                        ButtonNew.MouseButton1Click:Connect(function()
-                            DropdownHolder.Name = tostring(newObject)
-                            DropdownName.Text = tostring(newObject)
-                            callback(tostring(newObject))
-                        end)
-                        DropdownFrame.CanvasSize = UDim2.new(0,0,0,UIListLayoutLEA.AbsoluteContentSize.Y + 4)
-                    end
-                end
-
-                function removeTBL:Remove(oldObject,callback)
+                function CheckDropdown:Remove(oldObject,tableB)
                     if DropdownFrame:FindFirstChild(tostring(oldObject)) then 
+                        table.remove(tableB,tostring(newObject))
                         DropdownFrame:FindFirstChild(tostring(oldObject)):Destroy()
                         wait()
                         DropdownFrame.CanvasSize = UDim2.new(0,0,0,UIListLayoutLEA.AbsoluteContentSize.Y + 4)
